@@ -4,37 +4,32 @@ void ofApp::setup() {
     ofBackground(0);
     ofDisableArbTex();
     shader.load("shadersGL3/shader");
-    if(img.load("10-step-grey-with-guides.png")) {
-        img.getTexture();
-        plane.set(3840,1200, 10, 10);
-        plane.mapTexCoords(0, img.getHeight(),img.getWidth(),0);
-    }
+    waterMovie.load("movies/agua.mp4");
+    waterMovie.play();
+    
+    gui.setup();
+    gui.add(center.set("centro", 0.0, 0, 0.1));
+    gui.add(gamma.set("gamma", 0.0, 0.0, 1.0));
+    gui.add(fade.set("fade", 0.0, 0.0, 0.1));
 }
 
 void ofApp::update() {
- 
+    waterMovie.update();
 }
 
 void ofApp::draw() {
-    // bind our texture. in our shader this will now be tex0 by default
-    // so we can just go ahead and access it there.
-    img.getTexture().bind();
     shader.begin();
-    shader.setUniform1f("center", mouseX/1000.);
-    shader.setUniform1f("gamma", mouseY/1000.);
-    shader.setUniform1f("fade", mouseY/1000.);
-    shader.setUniform2f("resolution", 2048, 786);
-    ofPushMatrix();
-    ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
-    plane.draw();
-    ofPopMatrix();
+    shader.setUniformTexture("tex0", waterMovie.getTexture(), 1);
+    shader.setUniform1f("center", center);
+    shader.setUniform1f("gamma", gamma);
+    shader.setUniform1f("fade", fade);
+    shader.setUniform2f("resolution", 3840, 1200);
+    waterMovie.draw(0,0);
     shader.end();
-    img.getTexture().unbind();
-
    
+    gui.draw();
+    
 }
-
-
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){

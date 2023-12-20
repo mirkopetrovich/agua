@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxGui.h"
 
 class ofApp : public ofBaseApp{
 	public:
@@ -23,8 +24,12 @@ class ofApp : public ofBaseApp{
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
 	
-	ofShader shader;
-	ofPlanePrimitive plane;
-	ofImage img;
-
+    ofVideoPlayer waterMovie;
+    ofShader shader;
+	
+    ofxPanel gui;
+    ofParameter<float> center,gamma,fade;
+    
+    
+    
 };
