@@ -19,8 +19,9 @@ void main()
 {
     // here we move the texture coordinates
     
-    texCoordVarying = texcoord;
+    
     // send the vertices to the fragment shader
 	gl_Position = modelViewProjectionMatrix * position;
+    texCoordVarying = texcoord;
     
 }

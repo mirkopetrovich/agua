@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxGui.h"
+#include "ofxShadertoy.h"
 
 class ofApp : public ofBaseApp{
 	public:
@@ -26,6 +27,8 @@ class ofApp : public ofBaseApp{
 	
     ofVideoPlayer waterMovie;
     ofShader shader;
+    ofxShadertoy shadertoy;
+    ofFbo fbo;
 	
     ofxPanel gui;
     ofParameter<float> center,gamma,fade;
