@@ -161,8 +161,8 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     float time = iTime * 0.3 + 0.001;
         
     // ray
-    //vec3 ang = vec3(sin(time*3.0)*0.1,sin(time)*0.2+0.3,time);
-    vec3 ang = vec3(0,0,time);  
+    vec3 ang = vec3(sin(time*3.0)*0.1,sin(time)*0.2+0.3,time);
+    //vec3 ang = vec3(0,0,time);
     vec3 ori = vec3(0.0,3.5,time*5.0);
     vec3 dir = normalize(vec3(uv.xy,-2.0)); dir.z += length(uv) * 0.15;
     dir = normalize(dir) * fromEuler(ang);
