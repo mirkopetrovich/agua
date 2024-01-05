@@ -9,7 +9,7 @@ int main( ){
     settings.setSize(3840,1200);
     settings.setPosition(glm::vec2(0,0));
     settings.decorated = false;
-    //settings.windowMode = OF_FULLSCREEN;
+    settings.windowMode = OF_FULLSCREEN;
     settings.multiMonitorFullScreen = true;
     auto window = ofCreateWindow(settings);
 	ofRunApp(window, make_shared<ofApp>());

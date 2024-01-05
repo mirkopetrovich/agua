@@ -12,7 +12,7 @@ void ofApp::setup() {
     waterMovie.load("movies/agua.mp4");
     waterMovie.play();
     
-    fbo.allocate(3840,1200,GL_RGBA);
+    fbo.allocate(3840,1200,GL_RGB);
     fbo.begin();
     ofClear(0,0,0,0);
     fbo.end();
@@ -30,7 +30,9 @@ void ofApp::update() {
 
 void ofApp::draw() {
     fbo.begin();
-    shadertoy.draw(0,0, 3840, 1200);
+    if (test) shadertoy.draw(0,0,3840,1200);
+    else waterMovie.draw(0,1200,3840,-1200);
+    //shadertoy.draw(0,0, 3840, 1200);
     fbo.end();
     shader.begin();
     shader.setUniformTexture("tex0", fbo.getTexture(), 1);
@@ -42,7 +44,11 @@ void ofApp::draw() {
     waterMovie.draw(0,1200,3840,-1200);
     shader.end();
    
-    gui.draw();
+    if (show_gui) {
+        gui.draw();
+        ofShowCursor();
+    }
+    else ofHideCursor();
     
 }
 
@@ -50,6 +56,9 @@ void ofApp::draw() {
 void ofApp::keyPressed(int key){
     
     if (key == 'f') ofToggleFullscreen();
+    if (key == 't') test=!test;
+    if (key == 'g') show_gui=!show_gui;
+
 	
 }
 

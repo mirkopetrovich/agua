@@ -29,6 +29,7 @@ class ofApp : public ofBaseApp{
     ofShader shader;
     ofxShadertoy shadertoy;
     ofFbo fbo;
+    bool test, show_gui;
 	
     ofxPanel gui;
     ofParameter<float> center,gamma,fade;
