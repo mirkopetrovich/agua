@@ -12,7 +12,10 @@ const float EPSILON	= 1e-3;
 // sea
 const int ITER_GEOMETRY = 3;
 const int ITER_FRAGMENT = 5;
-float SEA_HEIGHT = 0.6*iMouse.y/100.;
+//float SEA_HEIGHT = 0.6*iMouse.y/100.;
+const float SEA_HEIGHT = 0.7;
+
+
 const float SEA_CHOPPY = 4.0;
 const float SEA_SPEED = 0.8;
 const float SEA_FREQ = 0.16;
@@ -156,12 +159,13 @@ float heightMapTracing(vec3 ori, vec3 dir, out vec3 p) {
 // main
 void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
 	vec2 uv = fragCoord.xy / iResolution.xy;
-    uv = uv * 1.0 - (2.0*iMouse.x/1000.);
+    //uv = uv * 1.0 - (2.0*iMouse.x/1000.);
+    uv = uv * 1.0 - (2.0*300./1000.);
     uv.x *= iResolution.x / iResolution.y;
     float time = iTime * 0.3 + 0.001;
         
     // ray
-    vec3 ang = vec3(sin(time*3.0)*0.1,sin(time)*0.2+0.3,time);
+    vec3 ang = vec3(sin(time)*0.1,sin(time)*0.2+0.3,time);
     //vec3 ang = vec3(0,0,time);
     vec3 ori = vec3(0.0,3.5,time*5.0);
     vec3 dir = normalize(vec3(uv.xy,-2.0)); dir.z += length(uv) * 0.15;

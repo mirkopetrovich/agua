@@ -19,9 +19,11 @@ void ofApp::setup() {
 
     
     gui.setup();
-    gui.add(center.set("centro", 0.0, 0, 0.2));
-    gui.add(gamma.set("gamma", 0.0, 0.0, 1.0));
-    gui.add(fade.set("fade", 0.0, 0.0, 0.1));
+    gui.add(center.set("centro", 0.142, 0, 0.2));
+    gui.add(gamma.set("gamma", 0.38, 0.0, 1.0));
+    gui.add(fade.set("fade", 0.063, 0.0, 0.1));
+    
+    test = 1;
 }
 
 void ofApp::update() {
